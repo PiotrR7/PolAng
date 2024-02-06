@@ -13,5 +13,5 @@ b.import file polang to database
 
 3. OPEN
 
-1. Open folder PolAng in VSC
-2. Run and debug index.py
+a. Open folder PolAng in VSC
+b. Run and debug index.py
