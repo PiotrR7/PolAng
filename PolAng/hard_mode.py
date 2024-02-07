@@ -8,6 +8,7 @@ class HardMode:
     class Memory:
         window = tk.Tk()
         points = tk.StringVar()
+        user_answer = tk.StringVar()
 
         itWas = []
         fakewords_list = []
@@ -17,8 +18,6 @@ class HardMode:
         round_n = 1
 
         pl = ""; ang = ""; img = ""
-
-        odp1 = ""; odp2 = ""; odp3 = ""; odp4 = ""; odp5 = ""; odp6 = ""
 
 
     def Play():
@@ -32,46 +31,32 @@ class HardMode:
         HardMode.Memory.window.geometry(f'{appwidth}x{appheight}+{int(x)}+{int(y)}')
 
         pl = tk.StringVar(); pl.set(HardMode.Memory.pl)
+        ang = tk.StringVar(); ang.set(HardMode.Memory.ang)
 
-        odp1 = tk.StringVar(); odp1.set(HardMode.Memory.odp1)
-        odp2 = tk.StringVar(); odp2.set(HardMode.Memory.odp2)
-        odp3 = tk.StringVar(); odp3.set(HardMode.Memory.odp3)
-        odp4 = tk.StringVar(); odp4.set(HardMode.Memory.odp4)
-        odp5 = tk.StringVar(); odp5.set(HardMode.Memory.odp5)
-        odp6 = tk.StringVar(); odp6.set(HardMode.Memory.odp6)
         
-        tk.Label(image=photos[photosAsStr.index(HardMode.Memory.img)], height=500, width=900
-                    ).place(x=500, y=20)
+        # tk.Label(image=photos[photosAsStr.index(HardMode.Memory.img)], height=500, width=900
+        #             ).place(x=500, y=20)
         tk.Label(textvariable=pl, width=10, height=2
-                    ).place(x=910,y=600)
+                    ).place(x=910,y=200)
         tk.Label(textvariable=HardMode.Memory.points, width=2, height=2
                     ).place(x=20, y=20)
-
-        tk.Button(textvariable=odp1, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp1)
-                            ).place(x=500, y=700)
-        tk.Button(textvariable=odp2, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp2)
-                            ).place(x=800, y=700)
-        tk.Button(textvariable=odp3, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp3)
-                            ).place(x=1100, y=700)
-        tk.Button(textvariable=odp4, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp4)
-                            ).place(x=500, y=750)
-        tk.Button(textvariable=odp5, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp5)
-                            ).place(x=800, y=750)
-        tk.Button(textvariable=odp6, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp6)
-                            ).place(x=1100, y=750)
+        tk.Entry(textvariable=HardMode.Memory.user_answer
+                    ).place(x=885,y=300)
+        tk.Button(text="Sprawdź", command=lambda: HardMode.IsCorectOdp()
+                    ).place(x=920,y=350)
 
         HardMode.Memory.window.mainloop()
 
 
     def RandomWord():
-        r_num = rd.randrange(0,len(sql.hard_words)-1)
-        r_word = str(sql.hard_words[r_num])
+        r_num = rd.randrange(0,len(sql.medhar_words)-1)
+        r_word = str(sql.medhar_words[r_num])
 
         r_word = r_word.replace("'",""); r_word = r_word.replace(")",""); r_word = r_word.replace("(",""); r_word = r_word.split(", ")
         
         id = r_word[0]
-        pl = r_word[1]
-        HardMode.Memory.ang = r_word[2]
+        pl = r_word[2]
+        HardMode.Memory.ang = r_word[1]
         img = r_word[3]
 
         img = img.replace(".png","")
@@ -91,63 +76,16 @@ class HardMode:
             if (x%2 != 0):
                 HardMode.Memory.fakewords_list.append(fakewords[x])
 
-        fw1 = HardMode.Memory.fakewords_list[rd.randrange(len(HardMode.Memory.fakewords_list))]
-        fw2 = HardMode.Memory.fakewords_list[rd.randrange(len(HardMode.Memory.fakewords_list))]
-        fw3 = HardMode.Memory.fakewords_list[rd.randrange(len(HardMode.Memory.fakewords_list))]
-        fw4 = HardMode.Memory.fakewords_list[rd.randrange(len(HardMode.Memory.fakewords_list))]
-        fw5 = HardMode.Memory.fakewords_list[rd.randrange(len(HardMode.Memory.fakewords_list))]
-
-        whichButton = rd.randrange(1,7)
-        
-        if (whichButton == 1):
-            HardMode.Memory.odp1 = HardMode.Memory.ang
-            HardMode.Memory.odp2 = fw1
-            HardMode.Memory.odp3 = fw2
-            HardMode.Memory.odp4 = fw3
-            HardMode.Memory.odp5 = fw4
-            HardMode.Memory.odp6 = fw5
-        if (whichButton == 2):
-            HardMode.Memory.odp1 = fw1
-            HardMode.Memory.odp2 = HardMode.Memory.ang
-            HardMode.Memory.odp3 = fw2
-            HardMode.Memory.odp4 = fw3
-            HardMode.Memory.odp5 = fw4
-            HardMode.Memory.odp6 = fw5
-        if (whichButton == 3):
-            HardMode.Memory.odp1 = fw2
-            HardMode.Memory.odp2 = fw1
-            HardMode.Memory.odp3 = HardMode.Memory.ang
-            HardMode.Memory.odp4 = fw3
-            HardMode.Memory.odp5 = fw4
-            HardMode.Memory.odp6 = fw5
-        if (whichButton == 4):
-            HardMode.Memory.odp1 = fw3
-            HardMode.Memory.odp2 = fw1
-            HardMode.Memory.odp3 = fw2
-            HardMode.Memory.odp4 = HardMode.Memory.ang
-            HardMode.Memory.odp5 = fw4
-            HardMode.Memory.odp6 = fw5
-        if (whichButton == 5):
-            HardMode.Memory.odp1 = fw4
-            HardMode.Memory.odp2 = fw1
-            HardMode.Memory.odp3 = fw2
-            HardMode.Memory.odp4 = fw3
-            HardMode.Memory.odp5 = HardMode.Memory.ang
-            HardMode.Memory.odp6 = fw5
-        if (whichButton == 6):
-            HardMode.Memory.odp1 = fw5
-            HardMode.Memory.odp2 = fw1
-            HardMode.Memory.odp3 = fw2
-            HardMode.Memory.odp4 = fw3
-            HardMode.Memory.odp5 = fw4
-            HardMode.Memory.odp6 = HardMode.Memory.ang
 
 
-    def IsCorectOdp(x):
+    def IsCorectOdp():
+        x = HardMode.Memory.user_answer.get()
+        x= x.lower()
+
         if HardMode.Memory.round_n <= 20:
             HardMode.Memory.round_n += 1
 
-            if x == HardMode.Memory.ang:
+            if x == HardMode.Memory.ang.lower():
                 HardMode.Memory.points_var += 1
                 HardMode.Memory.points.set(HardMode.Memory.points_var)
             else:
@@ -168,36 +106,19 @@ class HardMode:
             widget.destroy()
 
         # Re-create and place the necessary widgets
-        pl = tk.StringVar()
-        pl.set(HardMode.Memory.pl)
+        pl = tk.StringVar(); pl.set(HardMode.Memory.pl)
+        ang = tk.StringVar(); ang.set(HardMode.Memory.ang)
         
-        odp1 = tk.StringVar(); odp1.set(HardMode.Memory.odp1)
-        odp2 = tk.StringVar(); odp2.set(HardMode.Memory.odp2)
-        odp3 = tk.StringVar(); odp3.set(HardMode.Memory.odp3)
-        odp4 = tk.StringVar(); odp4.set(HardMode.Memory.odp4)
-        odp5 = tk.StringVar(); odp5.set(HardMode.Memory.odp5)
-        odp6 = tk.StringVar(); odp6.set(HardMode.Memory.odp6)
-        
-        tk.Label(image=photos[photosAsStr.index(HardMode.Memory.img)], height=500, width=900
-                    ).place(x=500, y=20)
+        # tk.Label(image=photos[photosAsStr.index(HardMode.Memory.img)], height=500, width=900
+        #             ).place(x=500, y=20)
         tk.Label(textvariable=pl, width=10, height=2
-                    ).place(x=910,y=600)
+                    ).place(x=910,y=200)
         tk.Label(textvariable=HardMode.Memory.points, width=2, height=2
                     ).place(x=20, y=20)
-
-        tk.Button(textvariable=odp1, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp1)
-                            ).place(x=500, y=700)
-        tk.Button(textvariable=odp2, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp2)
-                            ).place(x=800, y=700)
-        tk.Button(textvariable=odp3, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp3)
-                            ).place(x=1100, y=700)
-        tk.Button(textvariable=odp4, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp4)
-                            ).place(x=500, y=750)
-        tk.Button(textvariable=odp5, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp5)
-                            ).place(x=800, y=750)
-        tk.Button(textvariable=odp6, width=40, height=2, command=lambda: HardMode.IsCorectOdp(HardMode.Memory.odp6)
-                            ).place(x=1100, y=750)
-        
+        tk.Entry(textvariable=HardMode.Memory.user_answer
+                    ).place(x=885,y=300)
+        tk.Button(text="Sprawdź", command=lambda: HardMode.IsCorectOdp()
+                    ).place(x=920,y=350)
         # Update the window
         HardMode.Memory.window.update_idletasks()
 

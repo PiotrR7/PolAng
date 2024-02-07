@@ -8,6 +8,7 @@ class MedHadMode:
     class Memory:
         window = tk.Tk()
         points = tk.StringVar()
+        user_answer = tk.StringVar()
 
         itWas = []
         fakewords_list = []
@@ -17,8 +18,6 @@ class MedHadMode:
         round_n = 1
 
         pl = ""; ang = ""; img = ""
-
-        odp1 = ""; odp2 = ""; odp3 = ""; odp4 = ""; odp5 = ""; odp6 = ""
 
 
     def Play():
@@ -32,33 +31,21 @@ class MedHadMode:
         MedHadMode.Memory.window.geometry(f'{appwidth}x{appheight}+{int(x)}+{int(y)}')
 
         pl = tk.StringVar(); pl.set(MedHadMode.Memory.pl)
+        ang = tk.StringVar(); ang.set(MedHadMode.Memory.ang)
 
-        odp1 = tk.StringVar(); odp1.set(MedHadMode.Memory.odp1)
-        odp2 = tk.StringVar(); odp2.set(MedHadMode.Memory.odp2)
-        odp3 = tk.StringVar(); odp3.set(MedHadMode.Memory.odp3)
-        odp4 = tk.StringVar(); odp4.set(MedHadMode.Memory.odp4)
-        odp5 = tk.StringVar(); odp5.set(MedHadMode.Memory.odp5)
-        odp6 = tk.StringVar(); odp6.set(MedHadMode.Memory.odp6)
         
-        tk.Label(image=photos[photosAsStr.index(MedHadMode.Memory.img)], height=500, width=900
-                    ).place(x=500, y=20)
+        # tk.Label(image=photos[photosAsStr.index(MedHadMode.Memory.img)], height=500, width=900
+        #             ).place(x=500, y=20)
         tk.Label(textvariable=pl, width=10, height=2
-                    ).place(x=910,y=600)
+                    ).place(x=910,y=200)
         tk.Label(textvariable=MedHadMode.Memory.points, width=2, height=2
                     ).place(x=20, y=20)
-
-        tk.Button(textvariable=odp1, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp1)
-                            ).place(x=500, y=700)
-        tk.Button(textvariable=odp2, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp2)
-                            ).place(x=800, y=700)
-        tk.Button(textvariable=odp3, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp3)
-                            ).place(x=1100, y=700)
-        tk.Button(textvariable=odp4, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp4)
-                            ).place(x=500, y=750)
-        tk.Button(textvariable=odp5, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp5)
-                            ).place(x=800, y=750)
-        tk.Button(textvariable=odp6, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp6)
-                            ).place(x=1100, y=750)
+        tk.Label(textvariable=ang, width=10, height=2
+                    ).place(x=910,y=250)
+        tk.Entry(textvariable=MedHadMode.Memory.user_answer
+                    ).place(x=885,y=300)
+        tk.Button(text="Sprawdź", command=lambda: MedHadMode.IsCorectOdp()
+                    ).place(x=920,y=350)
 
         MedHadMode.Memory.window.mainloop()
 
@@ -70,9 +57,18 @@ class MedHadMode:
         r_word = r_word.replace("'",""); r_word = r_word.replace(")",""); r_word = r_word.replace("(",""); r_word = r_word.split(", ")
         
         id = r_word[0]
-        pl = r_word[1]
-        MedHadMode.Memory.ang = r_word[2]
+        ang = r_word[1]
+        pl = r_word[2]
         img = r_word[3]
+
+        ang = ang.replace("a", " _ ")
+        ang = ang.replace("o", " _ ")
+        ang = ang.replace("e", " _ ")
+        ang = ang.replace("i", " _ ")
+        ang = ang.replace("y", " _ ")
+        ang = ang.replace("u", " _ ")
+
+        MedHadMode.Memory.ang = ang
 
         img = img.replace(".png","")
         MedHadMode.Memory.img = img
@@ -91,63 +87,16 @@ class MedHadMode:
             if (x%2 != 0):
                 MedHadMode.Memory.fakewords_list.append(fakewords[x])
 
-        fw1 = MedHadMode.Memory.fakewords_list[rd.randrange(len(MedHadMode.Memory.fakewords_list))]
-        fw2 = MedHadMode.Memory.fakewords_list[rd.randrange(len(MedHadMode.Memory.fakewords_list))]
-        fw3 = MedHadMode.Memory.fakewords_list[rd.randrange(len(MedHadMode.Memory.fakewords_list))]
-        fw4 = MedHadMode.Memory.fakewords_list[rd.randrange(len(MedHadMode.Memory.fakewords_list))]
-        fw5 = MedHadMode.Memory.fakewords_list[rd.randrange(len(MedHadMode.Memory.fakewords_list))]
-
-        whichButton = rd.randrange(1,7)
-        
-        if (whichButton == 1):
-            MedHadMode.Memory.odp1 = MedHadMode.Memory.ang
-            MedHadMode.Memory.odp2 = fw1
-            MedHadMode.Memory.odp3 = fw2
-            MedHadMode.Memory.odp4 = fw3
-            MedHadMode.Memory.odp5 = fw4
-            MedHadMode.Memory.odp6 = fw5
-        if (whichButton == 2):
-            MedHadMode.Memory.odp1 = fw1
-            MedHadMode.Memory.odp2 = MedHadMode.Memory.ang
-            MedHadMode.Memory.odp3 = fw2
-            MedHadMode.Memory.odp4 = fw3
-            MedHadMode.Memory.odp5 = fw4
-            MedHadMode.Memory.odp6 = fw5
-        if (whichButton == 3):
-            MedHadMode.Memory.odp1 = fw2
-            MedHadMode.Memory.odp2 = fw1
-            MedHadMode.Memory.odp3 = MedHadMode.Memory.ang
-            MedHadMode.Memory.odp4 = fw3
-            MedHadMode.Memory.odp5 = fw4
-            MedHadMode.Memory.odp6 = fw5
-        if (whichButton == 4):
-            MedHadMode.Memory.odp1 = fw3
-            MedHadMode.Memory.odp2 = fw1
-            MedHadMode.Memory.odp3 = fw2
-            MedHadMode.Memory.odp4 = MedHadMode.Memory.ang
-            MedHadMode.Memory.odp5 = fw4
-            MedHadMode.Memory.odp6 = fw5
-        if (whichButton == 5):
-            MedHadMode.Memory.odp1 = fw4
-            MedHadMode.Memory.odp2 = fw1
-            MedHadMode.Memory.odp3 = fw2
-            MedHadMode.Memory.odp4 = fw3
-            MedHadMode.Memory.odp5 = MedHadMode.Memory.ang
-            MedHadMode.Memory.odp6 = fw5
-        if (whichButton == 6):
-            MedHadMode.Memory.odp1 = fw5
-            MedHadMode.Memory.odp2 = fw1
-            MedHadMode.Memory.odp3 = fw2
-            MedHadMode.Memory.odp4 = fw3
-            MedHadMode.Memory.odp5 = fw4
-            MedHadMode.Memory.odp6 = MedHadMode.Memory.ang
 
 
-    def IsCorectOdp(x):
+    def IsCorectOdp():
+        x = MedHadMode.Memory.user_answer.get()
+        x= x.lower()
+
         if MedHadMode.Memory.round_n <= 20:
             MedHadMode.Memory.round_n += 1
 
-            if x == MedHadMode.Memory.ang:
+            if x == MedHadMode.Memory.ang.lower():
                 MedHadMode.Memory.points_var += 1
                 MedHadMode.Memory.points.set(MedHadMode.Memory.points_var)
             else:
@@ -168,35 +117,21 @@ class MedHadMode:
             widget.destroy()
 
         # Re-create and place the necessary widgets
-        pl = tk.StringVar()
-        pl.set(MedHadMode.Memory.pl)
+        pl = tk.StringVar(); pl.set(MedHadMode.Memory.pl)
+        ang = tk.StringVar(); ang.set(MedHadMode.Memory.ang)
         
-        odp1 = tk.StringVar(); odp1.set(MedHadMode.Memory.odp1)
-        odp2 = tk.StringVar(); odp2.set(MedHadMode.Memory.odp2)
-        odp3 = tk.StringVar(); odp3.set(MedHadMode.Memory.odp3)
-        odp4 = tk.StringVar(); odp4.set(MedHadMode.Memory.odp4)
-        odp5 = tk.StringVar(); odp5.set(MedHadMode.Memory.odp5)
-        odp6 = tk.StringVar(); odp6.set(MedHadMode.Memory.odp6)
-        
-        tk.Label(image=photos[photosAsStr.index(MedHadMode.Memory.img)], height=500, width=900
-                    ).place(x=500, y=20)
+        # tk.Label(image=photos[photosAsStr.index(MedHadMode.Memory.img)], height=500, width=900
+        #             ).place(x=500, y=20)
         tk.Label(textvariable=pl, width=10, height=2
-                    ).place(x=910,y=600)
+                    ).place(x=910,y=200)
         tk.Label(textvariable=MedHadMode.Memory.points, width=2, height=2
                     ).place(x=20, y=20)
-
-        tk.Button(textvariable=odp1, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp1)
-                            ).place(x=500, y=700)
-        tk.Button(textvariable=odp2, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp2)
-                            ).place(x=800, y=700)
-        tk.Button(textvariable=odp3, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp3)
-                            ).place(x=1100, y=700)
-        tk.Button(textvariable=odp4, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp4)
-                            ).place(x=500, y=750)
-        tk.Button(textvariable=odp5, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp5)
-                            ).place(x=800, y=750)
-        tk.Button(textvariable=odp6, width=40, height=2, command=lambda: MedHadMode.IsCorectOdp(MedHadMode.Memory.odp6)
-                            ).place(x=1100, y=750)
+        tk.Label(textvariable=ang, width=10, height=2
+                    ).place(x=910,y=250)
+        tk.Entry(textvariable=MedHadMode.Memory.user_answer
+                    ).place(x=885,y=300)
+        tk.Button(text="Sprawdź", command=lambda: MedHadMode.IsCorectOdp()
+                    ).place(x=920,y=350)
         
         # Update the window
         MedHadMode.Memory.window.update_idletasks()

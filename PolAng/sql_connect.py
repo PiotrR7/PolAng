@@ -7,6 +7,7 @@ class sql:
     hard_words = []
 
     fakewords = []
+    pol_fakewords = []
 
 def connect():
     con = mysql.Connect(host='localhost', unix_socket='', user='root', passwd='', db='polang')
@@ -32,6 +33,10 @@ def connect():
     cur.execute("select * from fakewords")
     for c in cur:
         sql.fakewords.append(c)
+
+    cur.execute("select * from pol_fakewords")
+    for c in cur:
+        sql.pol_fakewords.append(c)
 
     cur.close()
 

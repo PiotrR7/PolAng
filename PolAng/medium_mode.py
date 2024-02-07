@@ -43,22 +43,22 @@ class MediumMode:
         # tk.Label(image=photos[photosAsStr.index(MediumMode.Memory.img)], height=500, width=900
         #             ).place(x=500, y=20)
         tk.Label(textvariable=pl, width=10, height=2
-                    ).place(x=910,y=600)
+                    ).place(x=910,y=200)
         tk.Label(textvariable=MediumMode.Memory.points, width=2, height=2
                     ).place(x=20, y=20)
 
         tk.Button(textvariable=odp1, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp1)
-                            ).place(x=500, y=700)
+                            ).place(x=500, y=400)
         tk.Button(textvariable=odp2, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp2)
-                            ).place(x=800, y=700)
+                            ).place(x=800, y=400)
         tk.Button(textvariable=odp3, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp3)
-                            ).place(x=1100, y=700)
+                            ).place(x=1100, y=400)
         tk.Button(textvariable=odp4, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp4)
-                            ).place(x=500, y=750)
+                            ).place(x=500, y=450)
         tk.Button(textvariable=odp5, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp5)
-                            ).place(x=800, y=750)
+                            ).place(x=800, y=450)
         tk.Button(textvariable=odp6, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp6)
-                            ).place(x=1100, y=750)
+                            ).place(x=1100, y=450)
 
         MediumMode.Memory.window.mainloop()
 
@@ -83,7 +83,7 @@ class MediumMode:
             MediumMode.Memory.itWas.append(id)
             MediumMode.Memory.pl = pl
 
-        fakewords = str(sql.fakewords)
+        fakewords = str(sql.pol_fakewords)
         fakewords = fakewords.replace("'",""); fakewords = fakewords.replace(")",""); fakewords = fakewords.replace("(","")
         fakewords = fakewords.replace("]",""); fakewords = fakewords.replace("[",""); fakewords = fakewords.split(", ")
         
@@ -181,22 +181,22 @@ class MediumMode:
         # tk.Label(image=photos[photosAsStr.index(MediumMode.Memory.img)], height=500, width=900
         #             ).place(x=500, y=20)
         tk.Label(textvariable=pl, width=10, height=2
-                    ).place(x=910,y=600)
+                    ).place(x=910,y=200)
         tk.Label(textvariable=MediumMode.Memory.points, width=2, height=2
                     ).place(x=20, y=20)
 
         tk.Button(textvariable=odp1, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp1)
-                            ).place(x=500, y=700)
+                            ).place(x=500, y=400)
         tk.Button(textvariable=odp2, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp2)
-                            ).place(x=800, y=700)
+                            ).place(x=800, y=400)
         tk.Button(textvariable=odp3, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp3)
-                            ).place(x=1100, y=700)
+                            ).place(x=1100, y=400)
         tk.Button(textvariable=odp4, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp4)
-                            ).place(x=500, y=750)
+                            ).place(x=500, y=450)
         tk.Button(textvariable=odp5, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp5)
-                            ).place(x=800, y=750)
+                            ).place(x=800, y=450)
         tk.Button(textvariable=odp6, width=40, height=2, command=lambda: MediumMode.IsCorectOdp(MediumMode.Memory.odp6)
-                            ).place(x=1100, y=750)
+                            ).place(x=1100, y=450)
         
         # Update the window
         MediumMode.Memory.window.update_idletasks()

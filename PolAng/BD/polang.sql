@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sty 03, 2024 at 05:39 PM
+-- Generation Time: Feb 07, 2024 at 05:47 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -317,6 +317,48 @@ INSERT INTO `medium_words` (`id`, `word`, `translate`, `image`) VALUES
 (73, 'Tiger', 'Tygrys', 'tygrys.png'),
 (74, 'Robot', 'Robot', 'robot.png');
 
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `pol_fakewords`
+--
+
+CREATE TABLE `pol_fakewords` (
+  `id` int(11) NOT NULL,
+  `word` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pol_fakewords`
+--
+
+INSERT INTO `pol_fakewords` (`id`, `word`) VALUES
+(1, 'dom'),
+(2, 'kot'),
+(3, 'pies'),
+(4, 'szczęście'),
+(5, 'miłość'),
+(6, 'przygoda'),
+(7, 'szkoła'),
+(8, 'komputer'),
+(9, 'telefon'),
+(10, 'kawa'),
+(11, 'książka'),
+(12, 'muzyka'),
+(13, 'chleb'),
+(14, 'jabłko'),
+(15, 'samochód'),
+(16, 'kwiat'),
+(17, 'trawa'),
+(18, 'słońce'),
+(19, 'morze'),
+(20, 'spacer'),
+(21, 'kino'),
+(22, 'kawałek'),
+(23, 'serce'),
+(24, 'dzień'),
+(25, 'noc');
+
 --
 -- Indeksy dla zrzutów tabel
 --
@@ -352,6 +394,12 @@ ALTER TABLE `medium_words`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indeksy dla tabeli `pol_fakewords`
+--
+ALTER TABLE `pol_fakewords`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -384,6 +432,12 @@ ALTER TABLE `medhar_words`
 --
 ALTER TABLE `medium_words`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+
+--
+-- AUTO_INCREMENT for table `pol_fakewords`
+--
+ALTER TABLE `pol_fakewords`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
